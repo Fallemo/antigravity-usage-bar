@@ -1,0 +1,99 @@
+{
+  "name": "antigravity-usage-bar",
+  "displayName": "Antigravity Pro Usage Bar",
+  "description": "Afișează în Status Bar procentul de usage Antigravity / Gemini Pro (5h & săptămânal) lângă Claude Code, cu sincronizare rapidă din Antigravity Settings.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravityUsage.menu",
+        "title": "Antigravity Usage: Meniu & Acțiuni"
+      },
+      {
+        "command": "antigravityUsage.dashboard",
+        "title": "Antigravity Usage: Vezi Panoul Detaliat"
+      },
+      {
+        "command": "antigravityUsage.syncPercentage",
+        "title": "Antigravity Usage: Sincronizează % cu Settings -> Models"
+      },
+      {
+        "command": "antigravityUsage.openOfficialSettings",
+        "title": "Antigravity Usage: Deschide Antigravity Settings (Models)"
+      },
+      {
+        "command": "antigravityUsage.refresh",
+        "title": "Antigravity Usage: Reîmprospătează Acum"
+      },
+      {
+        "command": "antigravityUsage.resetSync",
+        "title": "Antigravity Usage: Resetează Calibrarea"
+      }
+    ],
+    "configuration": {
+      "title": "Antigravity Pro Usage Bar",
+      "properties": {
+        "antigravityUsage.label": {
+          "type": "string",
+          "default": "Gem",
+          "enum": [
+            "Gem",
+            "AGY",
+            ""
+          ],
+          "description": "Eticheta afișată în fața procentelor din Status Bar (ex: 'Gem 5h 12% · wk 28%')."
+        },
+        "antigravityUsage.statusBarPriority": {
+          "type": "number",
+          "default": 101,
+          "description": "Prioritatea în partea dreaptă a Status Bar-ului (101 o plasează imediat lângă Claude Code Usage care folosește 100)."
+        },
+        "antigravityUsage.warningThreshold": {
+          "type": "number",
+          "default": 70,
+          "description": "Pragul (%) de la care indicatorul devine galben (atenționare că folosești intens)."
+        },
+        "antigravityUsage.criticalThreshold": {
+          "type": "number",
+          "default": 90,
+          "description": "Pragul (%) de la care indicatorul devine roșu (aproape de limită)."
+        },
+        "antigravityUsage.notifyOnHighUsage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Afișează o notificare discretă când treci peste pragul galben/roșu pe fereastra de 5h."
+        },
+        "antigravityUsage.fiveHourBudgetUnits": {
+          "type": "number",
+          "default": 9000000,
+          "description": "Capacitatea estimată pentru fereastra de 5 ore (se calibrează automat când folosești 'Sincronizează %')."
+        },
+        "antigravityUsage.weeklyBudgetUnits": {
+          "type": "number",
+          "default": 45000000,
+          "description": "Capacitatea estimată pentru fereastra de 7 zile (se calibrează automat când folosești 'Sincronizează %')."
+        },
+        "antigravityUsage.dataDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Calea către folderul Antigravity (lasă gol pentru auto-detecție ~/.gemini/antigravity)."
+        }
+      }
+    }
+  }
+}
